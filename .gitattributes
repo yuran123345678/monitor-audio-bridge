@@ -1,0 +1,10 @@
+* text=auto
+
+# Windows 脚本和说明必须保持 CRLF，否则 cmd / 记事本打开会乱
+*.bat text eol=crlf
+*.txt text eol=crlf
+
+# 二进制资源不做换行转换
+*.png binary
+*.ico binary
+*.icns binary

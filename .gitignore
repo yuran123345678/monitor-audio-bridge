@@ -1,0 +1,26 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# 构建产物
+build/
+.build/
+*.app/
+windows/AudioBridge.exe
+
+# 本地预览 / 临时输出（--snapshot、界面截图旧版、日志）
+.out/
+*.log
+
+# Swift
+*.o
+*.swiftmodule
+.swiftpm/
+Package.resolved
+
+# 编辑器 / 工具
+.vscode/
+.idea/
+*.swp
