@@ -20,7 +20,7 @@ Windows ──► Mac      Mac ──► Windows      Mac ──► Mac      Win
 | Mac 端（收 + 发 + 界面） | 已编译；`--nettest` 全过（含拉流/受信任设备、丢包冗余、多路混音）；**界面未经真人点击验证，系统声音采集未经授权后实测** |
 | Windows 端（收 + 发 + 界面 + 按程序采集） | 已用 CrossOver 里的 csc 以 C# 5 语法级别编译通过；界面预览逐张看过；**没在真 Windows 上跑过**，按程序采集（Process Loopback）一次都没在真机上执行过 |
 | 协议 | v5，与 3.0.1 及更早版本 **不互通**（v4 起拉流是「请求 → 质询 → HMAC 鉴权 → 应答」，再见包带会话令牌、冗余包 120 帧；v5 新增 NO_KEY 重配对包，修掉拉流包设备名错位、拒绝后冷却被绕过等问题） |
-| 文档 | 本文件 + `交付说明.md`（两分钟上手/验证命令/已知限制）+ `HANDOFF.md`（设计与坑）+ `windows/用前必读.txt` |
+| 文档 | 本文件 + `docs/QUICKSTART.md`（两分钟上手/验证命令/已知限制）+ `docs/CHANGELOG.md`（设计与坑）+ `windows/用前必读.txt` |
 
 v1 → v2 做了什么：
 
@@ -404,7 +404,7 @@ Windows 的编译和对测是在 Mac 的 CrossOver（Steam 容器）里做的：
 8. **Windows 按程序采集**：`ActivateAudioInterfaceAsync` + Process Loopback 的 COM 互操作是照文档手写的，
    在 wine 里无法执行（没有音频设备也没有这个 API）。「请求 pid / 生效 pid / 是否回退」的决策已抽成不依赖 COM 的
    `CapturePlan` 并有自测，但**真机上到底能不能激活成功一次都没跑过**。失败会回退整机采集、界面显示
-   「整机（按程序采集不可用）」、`%APPDATA%\AudioBridge\error.log` 记一条。验收方法见 HANDOFF.md。
+   「整机（按程序采集不可用）」、`%APPDATA%\AudioBridge\error.log` 记一条。验收方法见 `docs/CHANGELOG.md` 第〇节。
 9. **v3.0.1 这批修复里只能靠真机确认的部分**：拉流弹窗在程序只驻留菜单栏/托盘时能否被看到（Mac 已 `activate`、
    Windows 已置顶 + 托盘气泡，但没有真人验证）；睡眠唤醒后自动重新拉流；被拉流结束后恢复原来的接收角色；
    两台真机之间的质询-应答（自动化只用本机回环验了算法与包结构）。

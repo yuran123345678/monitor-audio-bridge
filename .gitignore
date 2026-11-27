@@ -24,3 +24,6 @@ Package.resolved
 .vscode/
 .idea/
 *.swp
+
+# 安装包产物（用 scripts/package-*.sh 现打，不进版本库）
+dist/

@@ -16,11 +16,18 @@ mkdir -p "$TMP/src" "$TMP/modcache"
 cp Sources/*.swift "$TMP/src/"
 cp Resources/Info.plist "$TMP/Info.plist"
 
-echo "==> 编译"
-( cd "$TMP/src" && swiftc -O -swift-version 5 -target arm64-apple-macosx15.0 \
-    -module-cache-path "$TMP/modcache" \
-    -framework AppKit -framework SwiftUI -framework AVFoundation -framework CoreAudio -framework AudioToolbox \
-    -o "$TMP/MonitorAudioBridge" ./*.swift )
+# 最低系统版本要和 Resources/Info.plist 的 LSMinimumSystemVersion 保持一致
+MIN_MACOS="14.2"
+
+echo "==> 编译（arm64 + x86_64，最低 macOS $MIN_MACOS，产出通用二进制）"
+for ARCH in arm64 x86_64; do
+    echo "    - $ARCH"
+    ( cd "$TMP/src" && swiftc -O -swift-version 5 -target "$ARCH-apple-macosx$MIN_MACOS" \
+        -module-cache-path "$TMP/modcache-$ARCH" \
+        -framework AppKit -framework SwiftUI -framework AVFoundation -framework CoreAudio -framework AudioToolbox \
+        -o "$TMP/bin-$ARCH" ./*.swift )
+done
+lipo -create "$TMP/bin-arm64" "$TMP/bin-x86_64" -output "$TMP/MonitorAudioBridge"
 
 APP="$ROOT/$OUT/MonitorAudioBridge.app"
 rm -rf "$ROOT/$OUT"

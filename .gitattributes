@@ -8,3 +8,6 @@
 *.png binary
 *.ico binary
 *.icns binary
+
+# macOS 安装说明在包里给人看，保持 LF 即可
+scripts/macos-install-notes.txt text eol=lf
