@@ -51,4 +51,6 @@ hdiutil convert "$RWDMG" -format UDZO -o "dist/音频桥-$VERSION-macOS-universa
 set_file_icon "dist/音频桥-$VERSION-macOS-universal.dmg"
 set_file_icon "dist/音频桥-$VERSION-Windows-x64-setup.exe"
 
+# 上传到 GitHub Release 时用 ASCII 文件名（gh 会丢掉非 ASCII 字符），
+# 例如：cp "dist/音频桥-$VERSION-macOS-universal.dmg" "/tmp/AudioBridge-$VERSION-macOS-universal.dmg"
 ls -lh dist/
