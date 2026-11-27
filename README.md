@@ -63,6 +63,22 @@
 
 ---
 
+## 下载安装包
+
+不想自己编译的话，直接装现成的（[全部版本](https://github.com/yuran123345678/monitor-audio-bridge/releases)）：
+
+| 平台 | 下载 | 说明 |
+|---|---|---|
+| macOS 14.2+ | [音频桥-3.0.2-macOS-universal.dmg](https://github.com/yuran123345678/monitor-audio-bridge/releases/latest) | 通用二进制，Intel 和 Apple 芯片都能跑；打开镜像把「音频桥」拖进 Applications |
+| Windows 10/11 | [音频桥-3.0.2-Windows-x64-setup.exe](https://github.com/yuran123345678/monitor-audio-bridge/releases/latest) | 按当前用户装到 `%LOCALAPPDATA%\Programs\AudioBridge`，不要管理员权限，自带卸载 |
+
+两个包都没有代码签名（个人项目，没买证书）：
+
+- macOS 第一次打开会被拦一下：右键点「音频桥」→「打开」，或执行 `xattr -dr com.apple.quarantine "/Applications/音频桥.app"`。
+- Windows 会弹 SmartScreen：点「更多信息」→「仍要运行」。
+
+包里的「安装说明 / 用前必读」写了这几步，以及首次运行要允许的两个权限。
+
 ## 快速开始
 
 ### 系统要求
